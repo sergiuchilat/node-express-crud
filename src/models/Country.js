@@ -6,23 +6,23 @@ module.exports = (sequelize, DataTypes) => {
             Country.hasMany(models.Region)
         }
     }
-    Country.init({
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
+    Country.init(
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            name: {
+                type: DataTypes.STRING(50)
+            },
+            code: {
+                type: DataTypes.STRING(2)
+            }
         },
-        name: {
-            type: DataTypes.STRING(50),
-            unique: true
-        },
-        code: {
-            type: DataTypes.STRING(2),
-            unique: true
-        }
-    }, {
-        sequelize,
-        modelName: 'Country'
-    });
+        {
+            sequelize,
+            modelName: 'Country'
+        });
     return Country;
 };

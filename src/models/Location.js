@@ -6,12 +6,15 @@ module.exports = (sequelize, DataTypes) => {
       Location.belongsTo(models.Region)
     }
   }
-  Location.init({
-    name: DataTypes.STRING(50),
-    region_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Location'
-  });
+  Location.init(
+    {
+      name: DataTypes.STRING(50),
+      regionId: DataTypes.INTEGER
+    }, 
+    {
+      sequelize,
+      modelName: 'Location'
+    }
+  );
   return Location;
 };

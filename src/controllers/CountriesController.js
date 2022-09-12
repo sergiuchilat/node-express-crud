@@ -1,4 +1,5 @@
 const Country = require('../database/models').Country
+const Region = require('../database/models').Region
 
 class CountriesController{
     async getAll(request, response){
@@ -52,6 +53,18 @@ class CountriesController{
             return response.status(404).json();
         } catch(error){
             return response.status(400).json({error})
+        }
+    }
+
+    async getRegions(request, response){
+        try{
+            return response.status(200).json(await Region.findAll({
+                where: {
+                    'countryId': request.params.id
+                }
+            }))
+        } catch(error){
+            return response.status(500).json({error})
         }
     }
 }

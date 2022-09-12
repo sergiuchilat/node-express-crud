@@ -11,10 +11,12 @@ module.exports = {
       name: {
         type: Sequelize.STRING(50),
         allowNull: false,
+        unique: true
       },
       code: {
         type: Sequelize.STRING(2),
         allowNull: false,
+        unique: true
       },
       createdAt: {
         allowNull: false,

@@ -18,7 +18,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/app.js",
     "migrate": "cd src/database && npx sequelize db:migrate",
-    "migrate:undo": "cd src/database && npx sequelize db:migrate:undo"
+    "migrate:undo": "cd src/database && npx sequelize db:migrate:undo",
+    "seed": "cd src/database && npx sequelize-cli db:seed:all",
+    "seed:undo": "cd src/database && npx sequelize-cli db:seed:undo"
   },
   "author": "Sergiu Chilat",
   "license": "ISC"

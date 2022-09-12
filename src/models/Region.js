@@ -7,13 +7,16 @@ module.exports = (sequelize, DataTypes) => {
       Region.hasMany(models.Location)
     }
   }
-  Region.init({
-    name: DataTypes.STRING(50),
-    code: DataTypes.STRING(2),
-    country_id: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Region'
-  });
+  Region.init(
+    {
+      name: DataTypes.STRING(50),
+      code: DataTypes.STRING(2),
+      countryId: DataTypes.INTEGER
+    },
+    {
+      sequelize,
+      modelName: 'Region'
+    }
+  );
   return Region;
 };
