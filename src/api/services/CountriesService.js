@@ -1,5 +1,5 @@
-const CountriesRepository = require('../repositories/CountriesRepository')
-const RegionsRepository = require('../repositories/RegionsRepository')
+const CountriesRepository = require('../../database/repositories/CountriesRepository')
+const RegionsRepository = require('../../database/repositories/RegionsRepository')
 
 class CountriesService {
     async getAll(fields = undefined) {

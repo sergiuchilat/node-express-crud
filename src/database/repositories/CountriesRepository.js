@@ -1,4 +1,4 @@
-const Country = require('../database/models').Country
+const Country = require('../models').Country
 
 class CountriesRepository {
     async getAll(fields = undefined) {

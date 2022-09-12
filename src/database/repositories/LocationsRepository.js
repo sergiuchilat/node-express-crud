@@ -1,4 +1,4 @@
-const Location = require('../database/models').Location
+const Location = require('../models').Location
 
 class LocationsRepository {
     async getAll(fields = undefined) {

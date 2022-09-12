@@ -1,4 +1,4 @@
-const Region = require('../database/models').Region
+const Region = require('../models').Region
 
 class RegionsRepository {
     async getAll(fields = undefined) {
