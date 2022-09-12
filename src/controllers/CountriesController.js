@@ -1,50 +1,53 @@
-const Country = require('../database/models').Country
-const Region = require('../database/models').Region
+const CountriesService = require('../services/CountriesService')
 
 class CountriesController{
     async getAll(request, response){
         try{
-            return response.status(200).json(await Country.findAll())
+            return await response.status(200).json(await CountriesService.getAll([
+                'id',
+                'name',
+                'code'
+            ]))
         } catch(error){
-            return response.status(500).json({error})
+            return await response.status(500).json(JSON.stringify(error))
         }
     }
 
     async getOne(request, response){
         try{
-            const country = await Country.findByPk(request.params.id)
+            const country = await CountriesService.findByPk(request.params.id)
             if(country){
                 return response.status(200).json(country)
             }
             return response.status(404).json()
         } catch(error){
-            return response.status(500).json({error})
+            return response.status(500).json(JSON.stringify(error))
         }
     }
 
     async create(request, response){
         try{
-            return response.status(200).json(await Country.create(request.body));
+            return response.status(200).json(await CountriesService.create(request.body));
         } catch(error){
-            return response.status(400).json({error})
+            return response.status(400).json(JSON.stringify(error))
         }
     }
 
     async update(request, response){
         try{
-            const existingCountry = await Country.findByPk(request.params.id)
+            const existingCountry = await CountriesService.findByPk(request.params.id)
             if(existingCountry){
                 return response.status(200).json(await existingCountry.update(request.body));
             }
             return response.status(404).json();
         } catch(error){
-            return response.status(400).json({error})
+            return response.status(400).json(JSON.stringify(error))
         }
     }
 
     async delete(request, response){
         try{
-            const deletedCountry = await Country.destroy({
+            const deletedCountry = await CountriesService.destroy({
                 where: {id: request.params.id}
             })
             if(deletedCountry){
@@ -52,19 +55,15 @@ class CountriesController{
             }
             return response.status(404).json();
         } catch(error){
-            return response.status(400).json({error})
+            return response.status(400).json(JSON.stringify(error))
         }
     }
 
     async getRegions(request, response){
         try{
-            return response.status(200).json(await Region.findAll({
-                where: {
-                    'countryId': request.params.id
-                }
-            }))
+            return response.status(200).json(await CountriesService.getRegions(request.params.id))
         } catch(error){
-            return response.status(500).json({error})
+            return response.status(500).json(JSON.stringify(error))
         }
     }
 }
