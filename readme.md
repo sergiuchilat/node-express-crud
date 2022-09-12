@@ -75,3 +75,20 @@ npx sequelize db:migrate:undo
 ```
 npm run dev
 ```
+
+
+# Project structure
+
+
+
+```
+|-- src
+    |-- controllers (REST controllers)
+    |-- database (database: config, migrations)
+    |-- models (application models)
+    |-- routes (application routes)
+    |app.js (application entry point)
+|-- .env (environment variables)
+|-- .gitignore
+|-- package.json
+```
