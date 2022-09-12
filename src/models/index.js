@@ -1,5 +1,5 @@
 const models = [
-    require('./Country'),
+    require('../database/models/Country'),
     require('./Region')
 ]
 
