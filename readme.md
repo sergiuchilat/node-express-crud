@@ -1,3 +1,15 @@
+# Project description
+
+This is an example of Rest API written on Express
+
+In this project are used:
+- Node
+- Express
+- Sequelize
+- MySQL
+
+
+
 # Install project
 Install dependencies
 ```
