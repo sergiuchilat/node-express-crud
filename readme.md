@@ -56,12 +56,14 @@ npx sequelize db:migrate
 
 # Rollback last migration
 ```
+npm run migrate:undo
+```
+or
+```
 cd src/database
 npx sequelize db:migrate:undo
 ```
-```
-npm run migrate:undo
-```
+
 # Rollback all migrations
 ```
 cd src/database
