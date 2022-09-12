@@ -23,13 +23,7 @@ class CountriesService {
     }
 
     async delete(id) {
-        const deletedCountry = await CountriesRepository.destroy({
-            where: { id: id }
-        })
-        if (deletedCountry) {
-            return {};
-        }
-        return null;
+        return await CountriesRepository.delete(id)
     }
 
     async getRegions(countryId, fields) {

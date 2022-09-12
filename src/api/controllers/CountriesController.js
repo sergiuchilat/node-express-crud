@@ -47,13 +47,7 @@ class CountriesController{
 
     async delete(request, response){
         try{
-            const deletedCountry = await CountriesService.destroy({
-                where: {id: request.params.id}
-            })
-            if(deletedCountry){
-                return response.status(200).json({});
-            }
-            return response.status(404).json();
+            return response.status(200).json(await CountriesService.delete(request.params.id))
         } catch(error){
             return response.status(400).json(JSON.stringify(error))
         }
