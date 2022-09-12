@@ -1,44 +1,58 @@
+const Country = require('../database/models').Country
+
 class CountriesController{
-    getAll(request, response){
-        return response.json([
-            {
-                id: 1,
-                name: "Moldova",
-                code: "MD",
-                flag: null,
-                area: 1400000,
-                population: 2890321
+    async getAll(request, response){
+        try{
+            return response.status(200).json(await Country.findAll())
+        } catch(error){
+            return response.status(500).json({error})
+        }
+    }
+
+    async getOne(request, response){
+        try{
+            const country = await Country.findByPk(request.params.id)
+            if(country){
+                return response.status(200).json(country)
             }
-        ])
+            return response.status(404).json()
+        } catch(error){
+            return response.status(500).json({error})
+        }
     }
 
-    getOne(request, response){
-        return response.json([
-            {
-                id: request.params.id,
-                name: "Moldova",
-                code: "MD",
-                flag: null,
-                area: 1400000,
-                population: 2890321
+    async create(request, response){
+        try{
+            return response.status(200).json(await Country.create(request.body));
+        } catch(error){
+            return response.status(400).json({error})
+        }
+    }
+
+    async update(request, response){
+        try{
+            const existingCountry = await Country.findByPk(request.params.id)
+            if(existingCountry){
+                return response.status(200).json(await existingCountry.update(request.body));
             }
-        ])
+            return response.status(404).json();
+        } catch(error){
+            return response.status(400).json({error})
+        }
     }
 
-    create(request, response){
-        const country = request.body;
-        country.id = 1; 
-        return response.json(country);
-    }
-
-    update(request, response){
-        const country = request.body;
-        country.id = request.params.id;
-        return response.json(country);
-    }
-
-    delete(request, response){
-        return response.json({});
+    async delete(request, response){
+        try{
+            const deletedCountry = await Country.destroy({
+                where: {id: request.params.id}
+            })
+            if(deletedCountry){
+                return response.status(200).json({});
+            }
+            return response.status(404).json();
+        } catch(error){
+            return response.status(400).json({error})
+        }
     }
 }
 

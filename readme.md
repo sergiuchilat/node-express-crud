@@ -87,7 +87,11 @@ npm run dev
 |-- src
     |-- controllers (REST controllers)
     |-- database (database: config, migrations)
-    |-- models (application models)
+        |-- config (database config)
+        |-- models (application models)
+        |-- migrations (database migrations)
+        |-- seeders (database seeders)
+        |-- index.js (database init)
     |-- routes (application routes)
     |app.js (application entry point)
 |-- .env (environment variables)

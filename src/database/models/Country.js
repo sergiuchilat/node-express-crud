@@ -1,7 +1,5 @@
 'use strict';
-const {
-    Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Country extends Model {
         static associate(models) {
@@ -10,16 +8,16 @@ module.exports = (sequelize, DataTypes) => {
     }
     Country.init({
         id: {
-            type: sequelize.DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         name: {
-            type: sequelize.DataTypes.STRING(50),
+            type: DataTypes.STRING(50),
             unique: true
         },
         code: {
-            type: sequelize.DataTypes.STRING(2),
+            type: DataTypes.STRING(2),
             unique: true
         }
     }, {
