@@ -32,8 +32,8 @@ class CountriesService {
         return null;
     }
 
-    async getRegions(countryId) {
-        return await RegionsRepository.getAllOfCountry(countryId);
+    async getRegions(countryId, fields) {
+        return await RegionsRepository.getAllOfCountry(countryId, fields);
     }
 }
 

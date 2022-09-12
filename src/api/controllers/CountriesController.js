@@ -61,7 +61,10 @@ class CountriesController{
 
     async getRegions(request, response){
         try{
-            return response.status(200).json(await CountriesService.getRegions(request.params.id))
+            return response.status(200).json(await CountriesService.getRegions(
+                request.params.id, 
+                ['id', 'name', 'code']
+            ))
         } catch(error){
             return response.status(500).json(JSON.stringify(error))
         }
