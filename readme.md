@@ -18,28 +18,13 @@ npm install
 
 # Configure .env file
 
-Backend API base URL
-> SERVER_URL=localhost
-
-Backend API port
-> SERVER_PORT=3000
-
-Database host
-> DB_HOST=localhost
-
-Database user
-> DB_USER="express_test"
-
-Database password
-> DB_PASSWORD="password"
-
-Database name
-> DB_NAME="express_test"
-
-
-Database dialect
-> DB_DIALECT=mysql
-
+`` SERVER_URL=localhost`` - backend API base URL
+``SERVER_PORT=3000``- backend API port 
+``DB_HOST=localhost`` - database host 
+``DB_USER=express_test`` - database user
+``DB_PASSWORD="password"`` - database password
+``DB_NAME=express_test`` - database name
+``DB_DIALECT=mysql`` - database dialect
 
 # Migrating database(Sequelize) 
 
