@@ -1,6 +1,6 @@
 # Project description
 
-This is an example of Rest API written on Express
+This is an example of a Rest API written in Express
 
 In this project are used:
 - Node
