@@ -1,3 +1,5 @@
+const { Op } = require("sequelize");
+const RegionsRepository = require('./RegionsRepository')
 const Location = require('../models').Location
 
 class LocationsRepository {
@@ -22,13 +24,27 @@ class LocationsRepository {
     }
 
     async delete(id) {
-        const deletedLocation = await Location.destroy({
+        return await Location.destroy({
             where: { id: id }
         })
-        if (deletedLocation) {
-            return {};
-        }
-        return null;
+    }
+
+    async getAllOfRegion(regionId, fields = undefined) {
+        return await Location.findAll({
+            where: { regionId: regionId },
+            attributes: fields
+        })
+    }
+
+    async getAllOfCountry(countryId, fields = undefined) {
+        const regions = await RegionsRepository.getAllOfCountry(countryId, ['id'])
+        
+        return await Location.findAll({
+            where: {
+                regionId: { [Op.in]: regions.map(region => region.id) }
+            },
+            attributes: fields
+        })
     }
 }
 

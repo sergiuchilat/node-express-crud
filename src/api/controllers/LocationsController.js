@@ -1,44 +1,55 @@
+const LocationsService = require('../services/LocationsService')
+
 class LocationsController{
-    getAll(request, response){
-        return response.json([
-            {
-                id: 1,
-                name: "Moldova",
-                code: "MD",
-                flag: null,
-                area: 1400000,
-                population: 2890321
+    async getAll(request, response){
+        try{
+            return await response.status(200).json(await LocationsService.getAll([
+                'id',
+                'name'
+            ]))
+        } catch(error){
+            return await response.status(500).json(JSON.stringify(error))
+        }
+    }
+
+    async getOne(request, response){
+        try{
+            const location = await LocationsService.getOne(request.params.id)
+            if(location){
+                return response.status(200).json(location)
             }
-        ])
+            return response.status(404).json()
+        } catch(error){
+            return response.status(500).json(JSON.stringify(error))
+        }
     }
 
-    getOne(request, response){
-        return response.json([
-            {
-                id: request.params.id,
-                name: "Moldova",
-                code: "MD",
-                flag: null,
-                area: 1400000,
-                population: 2890321
+    async create(request, response){
+        try{
+            return response.status(200).json(await LocationsService.create(request.body));
+        } catch(error){
+            return response.status(400).json(JSON.stringify(error))
+        }
+    }
+
+    async update(request, response){
+        try{
+            const existingLocation = await LocationsService.getOne(request.params.id)
+            if(existingLocation){
+                return response.status(200).json(await existingLocation.update(request.body));
             }
-        ])
+            return response.status(404).json();
+        } catch(error){
+            return response.status(400).json(JSON.stringify(error))
+        }
     }
 
-    create(request, response){
-        const country = request.body;
-        country.id = 1; 
-        return response.json(country);
-    }
-
-    update(request, response){
-        const country = request.body;
-        country.id = request.params.id;
-        return response.json(country);
-    }
-
-    delete(request, response){
-        return response.json({});
+    async delete(request, response){
+        try{
+            return response.status(200).json(await LocationsService.delete(request.params.id))
+        } catch(error){
+            return response.status(400).json(JSON.stringify(error))
+        }
     }
 }
 

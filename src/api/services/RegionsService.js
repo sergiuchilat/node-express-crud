@@ -1,5 +1,5 @@
-const RegionsRepository = require('../repositories/RegionsRepository')
-const LocationsRepository = require('../repositories/LocationsRepository')
+const RegionsRepository = require('../../database/repositories/RegionsRepository')
+const LocationsRepository = require('../../database/repositories/LocationsRepository')
 
 class RegionsService {
     async getAll(fields = undefined) {
@@ -23,17 +23,11 @@ class RegionsService {
     }
 
     async delete(id) {
-        const deletedRegion = await RegionsRepository.destroy({
-            where: { id: id }
-        })
-        if (deletedRegion) {
-            return {};
-        }
-        return null;
+        return await RegionsRepository.delete(id)
     }
 
     async getLocations(regionId) {
-        return await LocationsRepository.getAll(regionId)
+        return await LocationsRepository.getAllOfRegion(regionId)
     }
 }
 

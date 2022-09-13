@@ -15,7 +15,7 @@ class CountriesController{
 
     async getOne(request, response){
         try{
-            const country = await CountriesService.findByPk(request.params.id)
+            const country = await CountriesService.getOne(request.params.id)
             if(country){
                 return response.status(200).json(country)
             }
@@ -35,7 +35,7 @@ class CountriesController{
 
     async update(request, response){
         try{
-            const existingCountry = await CountriesService.findByPk(request.params.id)
+            const existingCountry = await CountriesService.getOne(request.params.id)
             if(existingCountry){
                 return response.status(200).json(await existingCountry.update(request.body));
             }
@@ -58,6 +58,17 @@ class CountriesController{
             return response.status(200).json(await CountriesService.getRegions(
                 request.params.id, 
                 ['id', 'name', 'code']
+            ))
+        } catch(error){
+            return response.status(500).json(JSON.stringify(error))
+        }
+    }
+
+    async getLocations(request, response){
+        try{
+            return response.status(200).json(await CountriesService.getLocations(
+                request.params.id, 
+                ['id', 'name', 'regionId']
             ))
         } catch(error){
             return response.status(500).json(JSON.stringify(error))

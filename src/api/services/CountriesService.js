@@ -1,5 +1,6 @@
 const CountriesRepository = require('../../database/repositories/CountriesRepository')
 const RegionsRepository = require('../../database/repositories/RegionsRepository')
+const LocationsRepository = require('../../database/repositories/LocationsRepository')
 
 class CountriesService {
     async getAll(fields = undefined) {
@@ -28,6 +29,10 @@ class CountriesService {
 
     async getRegions(countryId, fields) {
         return await RegionsRepository.getAllOfCountry(countryId, fields);
+    }
+
+    async getLocations(countryId, fields) {
+        return await LocationsRepository.getAllOfCountry(countryId, fields);
     }
 }
 
