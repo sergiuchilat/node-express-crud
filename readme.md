@@ -81,20 +81,24 @@ npm run dev
 
 # Project structure
 
-
-
 ```
 |-- src
-    |-- controllers (REST controllers)
+    |-- api
+        |-- controllers (REST controllers)
+        |-- routes (application routes)
+        |-- services (services layer)
     |-- database (database: config, migrations)
         |-- config (database config)
         |-- models (application models)
         |-- migrations (database migrations)
         |-- seeders (database seeders)
+        |-- repositories (repositories layer)
         |-- index.js (database init)
-    |-- routes (application routes)
     |app.js (application entry point)
 |-- .env (environment variables)
 |-- .gitignore
 |-- package.json
 ```
+
+## Postman collection link
+https://www.getpostman.com/collections/b2a29713bceae454a41e
